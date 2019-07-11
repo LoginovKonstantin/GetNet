@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from "react-router-dom";
-import { increment } from '../redux/actions';
+import { userInfo } from '../redux/actions';
 import axios from 'axios';
 import MainPage from './MainPage';
 import LoginPage from './LoginPage';
@@ -22,6 +21,7 @@ class StartPage extends Component {
       const state = (resp.data && resp.data.status && resp.data.status === 'success') ?
         { auth: 'success' } :
         { auth: 'failed' };
+      this.props.userInfo(resp.data.user);
       this.setState(state);
     }).catch(error => this.setState({auth: 'failed'}));
   }
@@ -38,10 +38,10 @@ class StartPage extends Component {
   }
 }
 
-const mapStateToProps = state => { return {value : state.value} }
+const mapStateToProps = state => { return {userInfo : state.userInfo} }
 const mapDispatchToProps = dispatch => {
   return {
-    increment: () => dispatch(increment()),
+    userInfo: (info) => dispatch(userInfo(info)),
   }
 }
 

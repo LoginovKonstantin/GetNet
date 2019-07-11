@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Profile from './Profile';
+import Balance from './Balance';
+import Orders from './Orders';
 
 class MainPage extends Component {
 
@@ -14,11 +16,10 @@ class MainPage extends Component {
 
   render() {
     const { page } = this.state;
-    const content = page === 'orders' ?
-      (<div>Orders</div>) :
-      page === 'balance' ?
-      (<div>Balance</div>) :  
-      (<div>Profile</div>);
+    let content = <Profile />;
+    if(page === 'orders') content = <Orders />;
+    if(page === 'balance') content = <Balance />;
+
     return (
       <div className="MainPage">
         <div className='header'>
@@ -27,7 +28,7 @@ class MainPage extends Component {
           <div onClick={() => this.setState({ page: 'balance' })}>Balance</div>
           <div onClick={() => this.logout()}>Exit</div>
         </div>
-        <div>{content}</div>
+        {content}
       </div>
     );
   }

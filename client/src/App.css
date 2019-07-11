@@ -25,13 +25,37 @@
 .header {
   display: flex;
   justify-content: flex-end;
-  width: 97%;
-  padding: 15px;
+  width: 100%;
+  padding: 15px 0 15px 0;
   height: 3vh;
+  border-bottom: 2px solid grey;
 }
+
+
 .header > div {
   padding-right: 20px;
   cursor: pointer;
+}
+div.content-profile > input {
+  width: 93%;
+    height: 20px;
+    font-size: 2vh;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.profile-header {
+  padding: 15px 0 15px 0;
+}
+.content-profile {
+  padding: 1vh;
+  min-width: 350px;
+  margin: 0 auto;
+}
+.content-orders {
+  padding: 1vh;
+  min-width: 450px;
+  margin: 0 auto;
 }
 
 .login-form {
@@ -66,11 +90,19 @@
   border: none;
   border-radius: 5px;
 }
+.save-button, .change-button {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+.change-button {
+  background-color: darkslateblue;
+}
 .reg-button {
   background-color: darkslateblue;
 }
 
-.error, .success {
+.error, .success, .info {
   color: #ec6c6c;
   font-size: 16px;
   text-align: center;
@@ -80,6 +112,33 @@
 .success {
   color: #1ed856;
 }
+.info {
+  color: grey;
+}
 .dis-btn {
   background-color: grey
+}
+.label-old-password {
+  margin-top: 30px;
+}
+.item {
+  display: flex;
+  font-size: 1.7vh;
+  font-weight: 100;
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px 0 10px 10px;
+}
+
+.price-red {
+  color: indianred;
+  margin: 0 10px 0 auto;
+}
+.price-green {
+  color: green;
+  margin: 0 10px 0 auto;
+}
+.time {
+  width: 200px;
 }

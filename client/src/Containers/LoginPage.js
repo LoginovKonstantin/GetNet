@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { userInfo } from '../redux/actions';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
   state = {
     loginEmail: '',
     password: '',
@@ -24,11 +26,15 @@ export default class LoginPage extends Component {
         if(resp.data && resp.data.status && resp.data.status === 'success') {
           localStorage.setItem('email', loginEmail);
           localStorage.setItem('password', password);
+          props.userInfo(resp.data.user);
           props.push("/");
         } else {
           this.setState({ errorLogin: 'incorrect email || password' });
         }
-      }).catch(error => this.setState({ errorLogin: 'try later...' + error }));
+      }).catch(e => {
+        console.log(e);
+        this.setState({ errorLogin: 'try later...' })
+      });
     } else {
       this.setState({ errorLogin: 'invalid email' })
     }
@@ -102,3 +108,12 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => { return {userInfo : state.userInfo} }
+const mapDispatchToProps = dispatch => {
+  return {
+    userInfo: (info) => dispatch(userInfo(info)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
